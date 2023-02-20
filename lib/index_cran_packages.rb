@@ -4,6 +4,9 @@ require 'nokogiri'
 require 'csv'
 require 'zlib'
 require 'stringio'
+require 'dotenv'
+
+Dotenv.load
 
 class IndexCranPackages
   def initialize(cran_server_url, file_name_path)
@@ -14,7 +17,8 @@ class IndexCranPackages
   def execute
     package_links = get_packages_links
     p "Processing #{package_links.count} packages..."
-    package_links.each_slice(10) do |batch|
+
+    package_links.each_slice(ENV['BATCH_SIZE'].to_i) do |batch|
       process_batch_packages(batch)
     end
     p 'Done!'

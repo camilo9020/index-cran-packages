@@ -14,19 +14,19 @@ This project indexes all the available packages on a CRAN server, extracts infor
 To execute the code locally, please follow these steps:
 
   1. Install Ruby version 2.7 or higher on your system and bundler with `gem install bundler`.
-  2. Clone this repository, navigate to the project directory in your terminal, Install the required dependencies by running bundle install.
+  2. Clone this repository, navigate to the project directory in your terminal, install the required dependencies by running bundle install.
   3. Create a .env file in the root of the project with the following content:
 
   ```
-    CRAN_SERVER_URL=https://cran.r-project.org/src/contrib/PACKAGES
+    CRAN_SERVER_URL='https://cran.r-project.org/src/contrib/'
     FILE_NAME_PATH='packages_info.txt'
     FILE_NAME_PATH_TEST='spec/packages_info_test.txt'
+    BATCH_SIZE=10
   ```
 
-  You can change the value of CRAN_SERVER_URL to use a different CRAN mirror, and FILE_NAME_PATH to specify a different name and location for the output file.
+  **Note:** You can change the value of CRAN_SERVER_URL to use a different CRAN mirror, and FILE_NAME_PATH to specify a different name and location for the output file. also you can change the BATCH_SIZE to specify the number of packages to be processed in each batch.
 
   4. Run the script by executing ruby index_cran_packages.rb. This will create a file called `packages_info.txt` in the project directory.
-
 
 
 # Tests
